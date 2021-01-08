@@ -47,6 +47,7 @@
     <pgjdbc.version>42.2.14</pgjdbc.version>
     <servlet.version>4.0.1</servlet.version>
     <slf4j.version>1.7.30</slf4j.version>
+    <mysql-connector-java.version>5.1.40</mysql-connector-java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -95,6 +96,12 @@
     </dependency>
     <!-- END COMPILE DEPENDENCIES !-->
 
+    <!--MYSQL-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql-connector-java.version}</version>
+    </dependency>
 
     <!-- START TEST DEPENDENCIES !-->
     <dependency>
