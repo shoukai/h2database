@@ -1494,6 +1494,10 @@ public class Parser {
         TableFilter filter = readSimpleTableFilter();
         command.setTableFilter(filter);
         command.setSetClauseList(readUpdateSetClause(filter));
+        if (database.getMode().allowUsingFromClauseInUpdateStatement && readIf(FROM)) {
+            TableFilter fromTable = readTableFilter();
+            command.setFromTableFilter(fromTable);
+        }
         if (readIf(WHERE)) {
             command.setCondition(readExpression());
         }
@@ -10214,6 +10218,9 @@ public class Parser {
             command.setEmitUpdates(true);
         } else if (readIf("READONLY")) {
             command.setReadOnly(true);
+        }
+        if (readIf("FETCH_SIZE")) {
+            command.setFetchSize(readNonNegativeInt());
         }
         return command;
     }
